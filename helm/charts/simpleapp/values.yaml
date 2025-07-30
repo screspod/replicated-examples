@@ -1,0 +1,70 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.25"
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30080
+
+# Namespace configuration
+namespace:
+  # Name of the namespace to deploy resources into
+  name: "simpleapp"
+  # Whether to create the namespace if it doesn't exist
+  create: true
+
+# Replicated SDK configuration
+replicated:
+  # Set to false to disable the Replicated SDK dependency
+  enabled: true
+
+# Simple HTML content
+htmlContent: |
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Simple App</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              margin: 0;
+              padding: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              color: white;
+          }
+          .container {
+              text-align: center;
+              background: rgba(255, 255, 255, 0.1);
+              padding: 50px;
+              border-radius: 20px;
+              backdrop-filter: blur(10px);
+              box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          }
+          h1 {
+              font-size: 3rem;
+              margin-bottom: 20px;
+              text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+          }
+          p {
+              font-size: 1.2rem;
+              margin-bottom: 30px;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="container">
+          <h1>Simple App</h1>
+          <p>This page is served by nginx running in a Kubernetes pod.</p>
+      </div>
+  </body>
+  </html>
