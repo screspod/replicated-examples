@@ -1,0 +1,14 @@
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: simpleapp
+spec:
+  title: Simple App
+  icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+  statusInformers:
+    - simpleapp/deployment/simpleapp
+  ports:
+    - serviceName: simpleapp
+      servicePort: 80
+      localPort: 30080
+      applicationUrl: "http://simpleapp"

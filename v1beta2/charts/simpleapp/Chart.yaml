@@ -1,0 +1,14 @@
+apiVersion: v2
+name: simpleapp
+description: Minimal Helm chart serving a static HTML page with nginx
+version: 0.1.0
+appVersion: "1.0.0"
+type: application
+dependencies:
+  # Replicated SDK dependency
+  # The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application.
+  # For more information, see https://docs.replicated.com/vendor/replicated-sdk-overview.
+  - name: replicated
+    repository: oci://registry.replicated.com/library
+    version: 1.7.0
+    condition: replicated.enabled
